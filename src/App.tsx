@@ -1,29 +1,51 @@
 import { useEffect, useState } from "react";
-
-function generateBoard(): BoardItemInterface[] {
-  let board = [];
-  for (let i = 1; i <= 6; i++) {
-    for (let j = 1; j <= 7; j++) {
-      board.push({ x: i, y: j, player: null });
-    }
-  }
-  return board;
-}
-
-interface BoardItemInterface {
-  x: number;
-  y: number;
-  player: number | null;
-}
+import { useGameContext } from "./context/gameContext";
+import Board from "./components/Board";
+import DropSection from "./components/DropSection";
+import GameScreen from "./components/GameScreen";
+import WelcomeScreen from "./components/WelcomeScreen";
+import WinModal from "./components/WinModal";
 
 function App() {
-  const [board, setBoard] = useState<BoardItemInterface[]>(generateBoard());
-  const [player, setPlayer] = useState<number>(1);
-  const [winner, setWinner] = useState<number | null>(null);
+  const {
+    board,
+    setBoard,
+    player,
+    setPlayer,
+    winner,
+    setWinner,
+    activePlayer,
+    setActivePlayer,
+    timeLimit,
+    setTimeLimit,
+    timeLeft,
+    setTimeLeft,
+    screen,
+  } = useGameContext();
+
+  useEffect(() => {
+    if (timeLeft > 0) return;
+    setWinner(activePlayer === 1 ? 2 : 1);
+    setTimeLeft(0);
+  }, [timeLeft]);
+
+  useEffect(() => {
+    if (screen !== "game") return;
+    setTimeLeft(timeLimit);
+    setActivePlayer((prev) => (prev === 1 ? 2 : 1));
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => prev - 1000);
+    }, 1000);
+
+    if (winner != null) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [board, winner]);
 
   useEffect(() => {
     if (winner == null) return;
-    alert(`Player ${winner} has won!`);
   }, [winner]);
 
   useEffect(() => {
@@ -147,68 +169,11 @@ function App() {
     });
   }
 
-  const add = (col: number) => {
-    let tempBoard = [...board];
-    let index = tempBoard.findIndex(
-      (item) => item.y === col && item.player == null
-    );
-    if (index === -1) {
-      console.log("Column is full");
-      return;
-    }
-    tempBoard[index].player = player;
-    setBoard(tempBoard);
-    console.log(board);
-  };
-
   return (
-    <div className="w-full h-full">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-200 w-max">
-        <div className="grid grid-cols-7 gap-2 p-2 w-full">
-          <button onClick={() => add(1)} className="bg-red-400 text-white">
-            col1
-          </button>
-          <button onClick={() => add(2)} className="bg-red-400 text-white">
-            col2
-          </button>
-          <button onClick={() => add(3)} className="bg-red-400 text-white">
-            col3
-          </button>
-          <button onClick={() => add(4)} className="bg-red-400 text-white">
-            col4
-          </button>
-          <button onClick={() => add(5)} className="bg-red-400 text-white">
-            col5
-          </button>
-          <button onClick={() => add(6)} className="bg-red-400 text-white">
-            col6
-          </button>
-          <button onClick={() => add(7)} className="bg-red-400 text-white">
-            col7
-          </button>
-        </div>
-        <div className="grid grid-cols-7 bg-gray-600 gap-6 p-4 w-max scale-y-[-1]">
-          {board.map((item) => (
-            <div
-              key={item.x.toString() + item.y.toString()}
-              className={`
-                ${
-                  item.player === 1
-                    ? "bg-red-400 "
-                    : item.player === 2
-                    ? "bg-yellow-200 "
-                    : "bg-white"
-                }
-                 w-12 h-12 rounded-full flex justify-center items-center
-              `}
-            >
-              <p className="scale-y-[-1]">
-                {item.x},{item.y}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="bg-blue-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
+      {screen === "welcome" ? <WelcomeScreen /> : null}
+      {screen === "game" ? <GameScreen /> : null}
+      {winner != null ? <WinModal /> : null}
     </div>
   );
 }
