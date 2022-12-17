@@ -10,8 +10,12 @@ const Header = () => {
       transition={{ duration: 0.3, delay: 0.6 }}
       className="flex justify-between items-center p-8"
     >
-      <Logo />
-      <Button text="Menu" onClick={() => {}} />
+      <div className="scale-125">
+        <Logo />
+      </div>
+      <div>
+        <Button text="Menu" onClick={() => {}} />
+      </div>
     </motion.div>
   );
 };

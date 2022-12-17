@@ -8,6 +8,10 @@ import WinModal from "./components/WinModal";
 import bgElement from "./assets/bg-element.png";
 import bgElementTwo from "./assets/bg-element2.png";
 
+export const outlineColor = "#080A0C";
+export const redColor = "#f92381";
+export const yellowColor = "#FFF000";
+
 function App() {
   const {
     board,
@@ -25,6 +29,7 @@ function App() {
     screen,
     moves,
     setMoves,
+    setScore,
   } = useGameContext();
 
   useEffect(() => {
@@ -51,6 +56,15 @@ function App() {
 
   useEffect(() => {
     if (winner == null) return;
+    setScore((prev) => {
+      return winner === 1
+        ? { ...prev, red: prev.red + 1 }
+        : winner === 2
+        ? { ...prev, yellow: prev.yellow + 1 }
+        : prev;
+    });
+    console.log("Current player is " + player);
+    console.log("Winner is " + winner);
   }, [winner]);
 
   useEffect(() => {
@@ -58,8 +72,8 @@ function App() {
     if (moves === 42) {
       setWinner(3);
     }
-    setPlayer((prev) => (prev === 1 ? 2 : 1));
     win();
+    setPlayer((prev) => (prev === 1 ? 2 : 1));
   }, [board]);
 
   function checkHorizontal(x: number, y: number, player: number) {
@@ -158,15 +172,15 @@ function App() {
       const horStreak = checkHorizontal(x, y, player);
       const diagonalRightStreak = checkDiagonalRight(x, y, player);
       const diagonalLeftStreak = checkDiagonalLeft(x, y, player);
-      console.log(`Vertical streak for item ${x},${y} is ${horStreak} `);
-      console.log(`Horizontal streak for item ${x},${y} is ${vertStreak} `);
-      console.log(
-        `Diagonal right streak for item ${x},${y} is ${diagonalRightStreak} `
-      );
-      console.log(
-        `Diagonal left  streak for item ${x},${y} is ${diagonalLeftStreak} `
-      );
-      console.log("----------------");
+      // console.log(`Vertical streak for item ${x},${y} is ${horStreak} `);
+      // console.log(`Horizontal streak for item ${x},${y} is ${vertStreak} `);
+      // console.log(
+      //   `Diagonal right streak for item ${x},${y} is ${diagonalRightStreak} `
+      // );
+      // console.log(
+      //   `Diagonal left  streak for item ${x},${y} is ${diagonalLeftStreak} `
+      // );
+      // console.log("----------------");
       if (
         horStreak > 3 ||
         vertStreak > 3 ||
@@ -180,10 +194,13 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      <div className="absolute z-[-1] bg-bg   w-full h-full"></div>
-      <img className="absolute z-[-1] top-0 left-0" src={bgElement} />
+      <div className="absolute z-[-1] bg-gradient-to-b from-bg-400 to-bg-500   w-full h-full"></div>
       <img
-        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full"
+        className="absolute z-[-1] top-0 left-0 hue-rotate-180"
+        src={bgElement}
+      />
+      <img
+        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full hue-rotate-180 "
         src={bgElementTwo}
       />
 

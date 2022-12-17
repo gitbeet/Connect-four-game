@@ -1,6 +1,7 @@
 import { useGameContext } from "../context/gameContext";
-
+import { outlineColor, redColor, yellowColor } from "../App";
 const Player = ({ player }: { player: number }) => {
+  const { score } = useGameContext();
   return (
     <div>
       <div
@@ -11,9 +12,9 @@ const Player = ({ player }: { player: number }) => {
         <h1
           className={`
          ${player === 1 ? "text-right" : "text-left"}
-         px-2 w-full text-4xl`}
+         px-2 w-full text-4xl font-numbers text-outline`}
         >
-          3
+          {player === 1 ? score.red : score.yellow}
         </h1>
       </div>
       <svg
@@ -30,19 +31,19 @@ const Player = ({ player }: { player: number }) => {
           cx="46"
           cy="45"
           r="38.5"
-          fill="#080A0C"
-          stroke="black"
-          stroke-width="3"
+          fill={outlineColor}
+          stroke={outlineColor}
+          strokeWidth="3"
         />
         <circle
           cx="40"
           cy="40"
           r="38.5"
-          fill={player === 1 ? "#FF1F74" : "#FFF000"}
-          stroke="black"
-          stroke-width="3"
+          fill={player === 1 ? redColor : yellowColor}
+          stroke={outlineColor}
+          strokeWidth="3"
         />
-        <circle cx="20" cy="21" r="6.5" fill="white" stroke="black" />
+        {/* <circle cx="20" cy="21" r="7" fill="white" /> */}
       </svg>
     </div>
   );

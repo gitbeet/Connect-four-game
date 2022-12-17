@@ -35,6 +35,16 @@ interface GameContextInterface {
   setMoves: React.Dispatch<React.SetStateAction<number>>;
   add: (val: number) => void;
   resetGameState: () => void;
+  score: {
+    red: number;
+    yellow: number;
+  };
+  setScore: React.Dispatch<
+    React.SetStateAction<{
+      red: number;
+      yellow: number;
+    }>
+  >;
 }
 
 const gameContext = createContext<GameContextInterface | null>(null);
@@ -64,6 +74,7 @@ const GameContextProvider = ({ children }: Props) => {
   const [timeLimit, setTimeLimit] = useState(12000);
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [moves, setMoves] = useState(0);
+  const [score, setScore] = useState({ red: 0, yellow: 0 });
 
   const add = (col: number) => {
     let tempBoard = [...board];
@@ -108,6 +119,8 @@ const GameContextProvider = ({ children }: Props) => {
         setMoves,
         add,
         resetGameState,
+        score,
+        setScore,
       }}
     >
       {children}

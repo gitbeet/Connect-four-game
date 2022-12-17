@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import arrowSmall from "../assets/arrow-sm2.png";
 import { useGameContext } from "../context/gameContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { outlineColor } from "../App";
 
 interface MousePositionInterface {
   x: number;
@@ -38,7 +38,6 @@ const Arrow = () => {
 
   const red = "#FF1F74";
   const yellow = "#FFD33C";
-  const outline = "#080A0C";
 
   if (!mousePos)
     return (
@@ -52,9 +51,9 @@ const Arrow = () => {
       >
         <path
           d="M25.298 29.4921L38.3429 14.654C39.4597 13.3837 38.5577 11.3897 36.8663 11.3897H10.7765C9.08512 11.3897 8.18311 13.3837 9.29989 14.654L22.3448 29.4921C23.1277 30.3827 24.515 30.3827 25.298 29.4921Z"
-          fill={outline}
-          stroke={outline}
-          stroke-width="1.64286"
+          fill={outlineColor}
+          stroke={outlineColor}
+          strokeWidth="1.64286"
         />
         <rect
           x="8.21436"
@@ -67,8 +66,8 @@ const Arrow = () => {
         <path
           d="M23.6552 26.2064L36.7001 11.3683C37.8169 10.098 36.9148 8.10401 35.2234 8.10401H9.1337C7.4423 8.10401 6.54029 10.098 7.65707 11.3683L20.7019 26.2064C21.4849 27.097 22.8722 27.097 23.6552 26.2064Z"
           fill={player === 1 ? red : yellow}
-          stroke={outline}
-          stroke-width="2"
+          stroke={outlineColor}
+          strokeWidth="2"
         />
         <rect x="8" y="9" width="28" height="2" rx="1" fill="white" />
       </svg>
@@ -111,9 +110,9 @@ const Arrow = () => {
       >
         <path
           d="M25.298 29.4921L38.3429 14.654C39.4597 13.3837 38.5577 11.3897 36.8663 11.3897H10.7765C9.08512 11.3897 8.18311 13.3837 9.29989 14.654L22.3448 29.4921C23.1277 30.3827 24.515 30.3827 25.298 29.4921Z"
-          fill={outline}
-          stroke={outline}
-          stroke-width="1.64286"
+          fill={outlineColor}
+          stroke={outlineColor}
+          strokeWidth="1.64286"
         />
         <rect
           x="8.21436"
@@ -126,8 +125,8 @@ const Arrow = () => {
         <path
           d="M23.6552 26.2064L36.7001 11.3683C37.8169 10.098 36.9148 8.10401 35.2234 8.10401H9.1337C7.4423 8.10401 6.54029 10.098 7.65707 11.3683L20.7019 26.2064C21.4849 27.097 22.8722 27.097 23.6552 26.2064Z"
           fill={player === 1 ? red : yellow}
-          stroke={outline}
-          stroke-width="1.64286"
+          stroke={outlineColor}
+          strokeWidth="1.64286"
         />
         <rect x="8" y="9" width="28" height="2" rx="1" fill="white" />
       </motion.svg>

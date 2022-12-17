@@ -8,7 +8,7 @@ const Timer = () => {
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: 0.4 }}
-      className="mt-8 flex w-full justify-center items-center"
+      className="mt-4 flex w-full justify-center items-center"
     >
       {" "}
       <motion.div
@@ -19,7 +19,7 @@ const Timer = () => {
       >
         <AnimatePresence mode="wait">
           <motion.h1
-            className="text-outline"
+            className="text-outline font-numbers"
             key={timeLeft}
             initial={timeLeft > 9000 ? { opacity: 0 } : { y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

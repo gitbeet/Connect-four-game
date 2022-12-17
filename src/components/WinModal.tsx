@@ -19,7 +19,9 @@ const WinModal = () => {
         {winner === 1 || winner === 2 ? (
           <div className="text-center">
             {" "}
-            <h1 className="text-4xl text-outline">Player {winner} wins!</h1>
+            <h1 className="text-4xl text-outline">
+              Player <span className="font-numbers">{winner}</span> wins!
+            </h1>
           </div>
         ) : (
           <h1>It's a tie!</h1>

@@ -3,14 +3,20 @@ module.exports = {
   content: [],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      text: ["Lobster", "cursive"],
+      numbers: ["Racing Sans One", "cursive"],
+    },
     colors: {
       yellow: "#FFF000",
-      red: "#E61772",
-      "blue-400": "#00CDCE",
-      "blue-300": "#00CDCE",
+      red: "#f92381",
+      "blue-400": "#0aa48c",
+      "blue-300": "#0aa48c",
 
       outline: "#080A0C",
-      bg: "#F3AEC1",
+      "bg-500": "#174c57",
+      "bg-400": "#174c57",
+
       white: "#FFFF",
     },
     screens: {
