@@ -4,8 +4,14 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     colors: {
-      yellow: "#FFC32B",
-      red: "#EB4D6A",
+      yellow: "#FFF000",
+      red: "#E61772",
+      "blue-400": "#00CDCE",
+      "blue-300": "#00CDCE",
+
+      outline: "#080A0C",
+      bg: "#F3AEC1",
+      white: "#FFFF",
     },
     screens: {
       md: "768px",

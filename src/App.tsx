@@ -5,6 +5,8 @@ import DropSection from "./components/DropSection";
 import GameScreen from "./components/GameScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
 import WinModal from "./components/WinModal";
+import bgElement from "./assets/bg-element.png";
+import bgElementTwo from "./assets/bg-element2.png";
 
 function App() {
   const {
@@ -21,6 +23,8 @@ function App() {
     timeLeft,
     setTimeLeft,
     screen,
+    moves,
+    setMoves,
   } = useGameContext();
 
   useEffect(() => {
@@ -39,6 +43,7 @@ function App() {
 
     if (winner != null) {
       clearInterval(interval);
+      setTimeLeft(0);
     }
 
     return () => clearInterval(interval);
@@ -49,6 +54,10 @@ function App() {
   }, [winner]);
 
   useEffect(() => {
+    setMoves((prev) => prev + 1);
+    if (moves === 42) {
+      setWinner(3);
+    }
     setPlayer((prev) => (prev === 1 ? 2 : 1));
     win();
   }, [board]);
@@ -170,7 +179,14 @@ function App() {
   }
 
   return (
-    <div className="bg-blue-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
+    <div className="w-screen h-screen">
+      <div className="absolute z-[-1] bg-bg   w-full h-full"></div>
+      <img className="absolute z-[-1] top-0 left-0" src={bgElement} />
+      <img
+        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full"
+        src={bgElementTwo}
+      />
+
       {screen === "welcome" ? <WelcomeScreen /> : null}
       {screen === "game" ? <GameScreen /> : null}
       {winner != null ? <WinModal /> : null}

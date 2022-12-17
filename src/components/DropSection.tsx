@@ -4,9 +4,10 @@ import DropSectionElement from "./DropSectionElement";
 const DropSection = () => {
   const arr = [...Array(7).keys()];
   return (
-    <div className="absolute z-10 w-full h-[calc(100%+6rem)] flex opacity-0 top-screen left-0 right-0 bottom-0">
+    // afjusting the cols to fit the board png
+    <div className="absolute z-10 w-[93%] h-[calc(100%+6rem)] flex opacity-0 top-screen left-2 right-0 bottom-0">
       {arr.map((section) => (
-        <DropSectionElement columnNumber={section + 1} />
+        <DropSectionElement key={section} columnNumber={section + 1} />
       ))}
     </div>
   );

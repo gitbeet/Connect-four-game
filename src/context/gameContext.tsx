@@ -31,6 +31,8 @@ interface GameContextInterface {
   setTimeLimit: React.Dispatch<React.SetStateAction<number>>;
   screen: string;
   setScreen: React.Dispatch<React.SetStateAction<string>>;
+  moves: number;
+  setMoves: React.Dispatch<React.SetStateAction<number>>;
   add: (val: number) => void;
   resetGameState: () => void;
 }
@@ -59,8 +61,9 @@ const GameContextProvider = ({ children }: Props) => {
   const [player, setPlayer] = useState<number>(1);
   const [winner, setWinner] = useState<number | null>(null);
   const [activePlayer, setActivePlayer] = useState(1);
-  const [timeLimit, setTimeLimit] = useState(30000);
+  const [timeLimit, setTimeLimit] = useState(12000);
   const [timeLeft, setTimeLeft] = useState(timeLimit);
+  const [moves, setMoves] = useState(0);
 
   const add = (col: number) => {
     let tempBoard = [...board];
@@ -80,7 +83,7 @@ const GameContextProvider = ({ children }: Props) => {
     setPlayer(1);
     setWinner(null);
     setActivePlayer(1);
-    setTimeLimit(30000);
+    setTimeLimit(timeLimit);
     setTimeLeft(timeLimit);
   };
 
@@ -101,6 +104,8 @@ const GameContextProvider = ({ children }: Props) => {
         setTimeLimit,
         screen,
         setScreen,
+        moves,
+        setMoves,
         add,
         resetGameState,
       }}
