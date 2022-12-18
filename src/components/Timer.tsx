@@ -2,7 +2,7 @@ import { useGameContext } from "../context/gameContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Timer = () => {
-  const { timeLeft, player } = useGameContext();
+  const { timeLeft, player, winner } = useGameContext();
   return (
     <motion.div
       initial={{ opacity: 0, y: -30 }}
@@ -10,7 +10,6 @@ const Timer = () => {
       transition={{ duration: 0.2, delay: 0.4 }}
       className="mt-4 flex w-full justify-center items-center"
     >
-      {" "}
       <motion.div
         key={player}
         className={`${timeLeft < 15000 ? " text-outline " : "text-outline "} ${
@@ -21,7 +20,7 @@ const Timer = () => {
           <motion.h1
             className="text-outline font-numbers"
             key={timeLeft}
-            initial={timeLeft > 9000 ? { opacity: 0 } : { y: -20, opacity: 0 }}
+            initial={timeLeft > 9000 ? { opacity: 1 } : { y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
             {timeLeft / 1000}

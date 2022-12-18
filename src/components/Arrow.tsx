@@ -14,11 +14,12 @@ function getWindowSize() {
 }
 
 const Arrow = () => {
-  const { player } = useGameContext();
+  const { player, isGameStarted, animationStarted } = useGameContext();
   const [mousePos, setMousePos] = useState<MousePositionInterface | null>(null);
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   useEffect(() => {
+    if (!isGameStarted) return;
     const handleMouseMove = (event: any) => {
       setMousePos({ x: event.clientX, y: event.clientY });
     };
@@ -34,7 +35,7 @@ const Arrow = () => {
       window.removeEventListener("resize", handleWindowResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [isGameStarted]);
 
   const red = "#FF1F74";
   const yellow = "#FFD33C";
@@ -79,7 +80,7 @@ const Arrow = () => {
   return (
     <AnimatePresence mode="wait">
       <motion.svg
-        key={player}
+        key={animationStarted ? 1 : 0}
         initial={{
           translateX: "-50%",
           top: -18,
@@ -128,7 +129,14 @@ const Arrow = () => {
           stroke={outlineColor}
           strokeWidth="1.64286"
         />
-        <rect x="8" y="9" width="28" height="2" rx="1" fill="white" />
+        <rect
+          x="8"
+          y="9"
+          width="28"
+          height="2"
+          rx="1"
+          fill={player === 1 ? "#ff6fa6" : "#ffff"}
+        />
       </motion.svg>
     </AnimatePresence>
   );

@@ -10,7 +10,7 @@ const Board = () => {
         <BoardItem key={i} item={item} />
       ))}
       <img
-        className="absolute bottom-[2px] left-[2px]  scale-y-[-1]"
+        className="absolute bottom-[5px] left-[4px]  scale-y-[-1]"
         src={boardSmall}
         alt="board"
       />

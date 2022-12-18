@@ -1,14 +1,17 @@
 import { useGameContext } from "../context/gameContext";
 
 const DropSectionElement = ({ columnNumber }: { columnNumber: number }) => {
-  const { add } = useGameContext();
+  const { add, animationComplete, addButtonDisabled, isGameStarted } =
+    useGameContext();
   return (
-    <button
+    <div
       onClick={() => add(columnNumber)}
-      className="bg-red-400 text-white w-full"
+      className={` ${
+        addButtonDisabled || !isGameStarted ? "pointer-events-none " : " "
+      } bg-red-400 text-white w-full select-none`}
     >
       col1
-    </button>
+    </div>
   );
 };
 

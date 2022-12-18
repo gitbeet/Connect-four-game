@@ -6,6 +6,11 @@ import {
   useState,
 } from "react";
 
+interface WinnerStreakInterface {
+  x: number;
+  y: number;
+}
+
 export interface BoardItemInterface {
   x: number;
   y: number;
@@ -23,8 +28,6 @@ interface GameContextInterface {
   setPlayer: React.Dispatch<React.SetStateAction<number>>;
   winner: number | null;
   setWinner: React.Dispatch<React.SetStateAction<number | null>>;
-  activePlayer: number;
-  setActivePlayer: React.Dispatch<React.SetStateAction<number>>;
   timeLeft: number;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
   timeLimit: number;
@@ -45,6 +48,24 @@ interface GameContextInterface {
       yellow: number;
     }>
   >;
+  winnerDecided: boolean;
+  setWinnerDecided: React.Dispatch<React.SetStateAction<boolean>>;
+  showRulesWindow: boolean;
+  setShowRulesWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  showWinWindow: boolean;
+  setShowWinWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  isGameStarted: boolean;
+  setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  animationStarted: boolean;
+  setAnimationStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  animationComplete: boolean;
+  setAnimationComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  winnerStreak: WinnerStreakInterface[];
+  setWinnerStreak: React.Dispatch<
+    React.SetStateAction<WinnerStreakInterface[]>
+  >;
+  addButtonDisabled: boolean;
+  setAddButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const gameContext = createContext<GameContextInterface | null>(null);
@@ -66,17 +87,26 @@ function generateBoard(): BoardItemInterface[] {
 }
 
 const GameContextProvider = ({ children }: Props) => {
+  const [showRulesWindow, setShowRulesWindow] = useState(false);
+  const [showWinWindow, setShowWinWindow] = useState(false);
   const [board, setBoard] = useState<BoardItemInterface[]>(generateBoard());
   const [screen, setScreen] = useState("welcome");
   const [player, setPlayer] = useState<number>(1);
   const [winner, setWinner] = useState<number | null>(null);
-  const [activePlayer, setActivePlayer] = useState(1);
-  const [timeLimit, setTimeLimit] = useState(12000);
+  const [timeLimit, setTimeLimit] = useState(60000);
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [moves, setMoves] = useState(0);
   const [score, setScore] = useState({ red: 0, yellow: 0 });
+  const [winnerDecided, setWinnerDecided] = useState(false);
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [animationStarted, setAnimationStarted] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [winnerStreak, setWinnerStreak] = useState<WinnerStreakInterface[]>([]);
+  const [addButtonDisabled, setAddButtonDisabled] = useState(false);
 
   const add = (col: number) => {
+    setAddButtonDisabled(true);
+    // if (!animationComplete) return;
     let tempBoard = [...board];
     let index = tempBoard.findIndex(
       (item) => item.y === col && item.player == null
@@ -93,9 +123,11 @@ const GameContextProvider = ({ children }: Props) => {
     setBoard(generateBoard());
     setPlayer(1);
     setWinner(null);
-    setActivePlayer(1);
+    setWinnerDecided(false);
     setTimeLimit(timeLimit);
     setTimeLeft(timeLimit);
+    setMoves(0);
+    setWinnerStreak([]);
   };
 
   return (
@@ -107,8 +139,6 @@ const GameContextProvider = ({ children }: Props) => {
         setPlayer,
         winner,
         setWinner,
-        activePlayer,
-        setActivePlayer,
         timeLeft,
         setTimeLeft,
         timeLimit,
@@ -121,6 +151,22 @@ const GameContextProvider = ({ children }: Props) => {
         resetGameState,
         score,
         setScore,
+        winnerDecided,
+        setWinnerDecided,
+        showRulesWindow,
+        setShowRulesWindow,
+        isGameStarted,
+        animationStarted,
+        setAnimationStarted,
+        setIsGameStarted,
+        animationComplete,
+        setAnimationComplete,
+        winnerStreak,
+        setWinnerStreak,
+        addButtonDisabled,
+        setAddButtonDisabled,
+        showWinWindow,
+        setShowWinWindow,
       }}
     >
       {children}
