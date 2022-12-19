@@ -12,7 +12,7 @@ const GameScreen = () => {
     useGameContext();
   return (
     <>
-      {!isGameStarted && !winnerDecided && <StartGame />}
+      <StartGame />
       <Header />
       <Timer />
       <BoardSection />
