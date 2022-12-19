@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import clickSound from "../assets/button-click-arrow.mp3";
+import { useGameContext } from "../context/gameContext";
 
 interface Props {
   direction: string;
@@ -7,15 +9,20 @@ interface Props {
   disabled: boolean;
 }
 
+const audio = new Audio(clickSound);
+
 const ArrowMenu = ({ direction, onClick, disabled }: Props) => {
+  const { sound } = useGameContext();
   const [clicked, setClicked] = useState(false);
   const click = () => {
     onClick();
     setClicked((prev) => !prev);
+    if (!sound) return;
+    audio.play();
   };
   return (
     <div
-      onClick={click}
+      onClick={() => click()}
       className={`${
         disabled ? "opacity-50 pointer-events-none " : ""
       } relative  w-8 h-8  select-none  cursor-pointer`}

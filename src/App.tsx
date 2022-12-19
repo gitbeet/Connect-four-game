@@ -9,21 +9,29 @@ import bgElement from "./assets/bg-element.png";
 import bgElementTwo from "./assets/bg-element2.png";
 import Rules from "./components/Rules";
 import Menu from "./components/Menu";
-
+import winSound from "./assets/win-sound.mp3";
+import bgSound from "./assets/background-music.mp3";
+import winModalSound from "./assets/game-won-sound.wav";
 export const outlineColor = "#080A0C";
 export const redColor = "#f92381";
 export const yellowColor = "#FFF000";
 
+const winAudio = new Audio(winSound);
+const bgAudio = new Audio(bgSound);
+const winModalAudio = new Audio(winModalSound);
+winAudio.volume = 0.15;
+winModalAudio.volume = 0.2;
+bgAudio.loop = true;
+bgAudio.volume = 0.1;
+
 function App() {
   const {
     board,
-    setBoard,
     player,
     setPlayer,
     winner,
     setWinner,
     timeLimit,
-    setTimeLimit,
     timeLeft,
     setTimeLeft,
     screen,
@@ -32,17 +40,30 @@ function App() {
     setScore,
     winnerDecided,
     setWinnerDecided,
-    showRulesWindow,
     isGameStarted,
     setIsGameStarted,
     animationComplete,
     setAnimationComplete,
-    winnerStreak,
     setWinnerStreak,
-    showWinWindow,
     setShowWinWindow,
-    showMenu,
+    sound,
   } = useGameContext();
+
+  useEffect(() => {
+    bgAudio.play();
+  }, []);
+
+  useEffect(() => {
+    if (!sound) {
+      bgAudio.pause();
+      winAudio.volume = 0;
+      winModalAudio.volume = 0;
+    } else {
+      winAudio.volume = 0.15;
+      winModalAudio.volume = 0.15;
+      bgAudio.play();
+    }
+  }, [sound]);
 
   useEffect(() => {
     if (timeLeft > 0) return;
@@ -69,7 +90,11 @@ function App() {
     if (winner == null || winnerDecided) return;
     setIsGameStarted(false);
     setWinnerDecided(true);
+    if (sound) {
+      winAudio.play();
+    }
     setTimeout(() => {
+      winModalAudio.play();
       setShowWinWindow(true);
       setScore((prev) => {
         return winner === 1

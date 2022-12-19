@@ -1,17 +1,19 @@
 import { BoardItemInterface, useGameContext } from "../context/gameContext";
 import { motion } from "framer-motion";
-
+import dropSound from "../assets/button-click-arrow2.mp3";
 interface Props {
   item: BoardItemInterface;
 }
+
+const audio = new Audio(dropSound);
 
 const BoardItem = ({ item }: Props) => {
   const {
     setAnimationComplete,
     setAnimationStarted,
     setAddButtonDisabled,
-    winner,
     winnerStreak,
+    sound,
   } = useGameContext();
 
   let isWinner =
@@ -31,21 +33,22 @@ absolute top-0 bottom-0 left-0 right-0   rounded-full flex justify-center items-
       initial={{ y: 0 }}
       animate={{
         zIndex: 100,
-        scaleY: [1, 1.05, 1.05, 1.05, 1],
+        scaleY: [1.05, 1.05, 1.05, 1.05, 1.05],
 
-        scaleX: [1, 1.1, 0, 1.1, 1],
+        scaleX: [1.05, 1.2, 0, 1.2, 1.05],
         transition: {
           type: "tween",
-          duration: 0.6,
-
+          duration: 1.2,
+          // repeat: 1,
           ease: "easeInOut",
         },
       }}
       key={item.x.toString() + item.y.toString()}
       className={`${
-        item.player === 1 ? "bg-red" : "bg-yellow"
-      } absolute top-0 bottom-0 left-0 right-0 border-2  rounded-full flex justify-center items-center 
- border-white`}
+        item.player === 1 ? "bg-red shadow-red" : "bg-yellow shadow-yellow"
+      } absolute top-0 bottom-0 left-0 right-0 border border-white  rounded-full flex justify-center items-center 
+ shadow-lg bg-blend-hard-light
+  `}
     ></motion.div>
   ) : (
     <motion.div
@@ -55,6 +58,8 @@ absolute top-0 bottom-0 left-0 right-0   rounded-full flex justify-center items-
       onAnimationComplete={() => {
         setAnimationComplete(true);
         setAddButtonDisabled(false);
+        if (!sound) return;
+        audio.play();
       }}
       transition={{
         duration: 0.4 - item.x * 0.05,

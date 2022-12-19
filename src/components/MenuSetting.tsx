@@ -39,7 +39,7 @@ const MenuSetting = ({
         disabled ? "pointer-events-none opacity-50 " : ""
       } "  w-full flex justify-between items-center font-numbers space-x-4"`}
     >
-      <h1 className="select-none text-xl w-full">{title}</h1>
+      <h1 className="select-none text-lg w-full">{title}</h1>
       <div className="flex justify-center items-center space-x-2 w-full">
         <ArrowMenu
           direction="left"
@@ -58,7 +58,7 @@ const MenuSetting = ({
             }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: "spring", duration: 0.6, bounce: 0.4 }}
-            className="select-none text-center text-xl font-numbers"
+            className="select-none text-center text-lg font-numbers"
           >
             {value}
           </motion.p>

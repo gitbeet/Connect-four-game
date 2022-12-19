@@ -2,9 +2,10 @@ import Button from "./Button";
 import Logo from "./Logo";
 import { motion } from "framer-motion";
 import { useGameContext } from "../context/gameContext";
+import ResetButton from "./ResetButton";
 
 const Header = () => {
-  const { setShowMenu, language } = useGameContext();
+  const { setShowMenu, language, resetGameState } = useGameContext();
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -15,7 +16,8 @@ const Header = () => {
       <div className="scale-125">
         <Logo />
       </div>
-      <div>
+      <div className="flex space-x-4 items-center">
+        <ResetButton />
         <Button
           text={language === "English" ? "Options" : "Opciones"}
           onClick={() => setShowMenu(true)}
