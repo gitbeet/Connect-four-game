@@ -7,7 +7,7 @@ const PlayerSection = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.6 }}
-      className="absolute w-full px-16 bottom-12 flex justify-between"
+      className="absolute w-full px-16 bottom-12 flex justify-between md:px-32  lg:px-96"
     >
       <Player player={1} />
       <Player player={2} />

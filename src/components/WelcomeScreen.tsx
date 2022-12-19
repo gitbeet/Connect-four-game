@@ -27,9 +27,9 @@ const childrenVariants = {
 };
 
 const WelcomeScreen = () => {
-  const { setScreen, setShowRulesWindow } = useGameContext();
+  const { setScreen, setShowRulesWindow, setShowMenu } = useGameContext();
   return (
-    <div className="absolute  z-20 w-full px-12 h-full flex flex-col justify-center items-center space-y-32 -mt-24">
+    <div className="absolute  z-20 w-[min(100%,450px)] px-12 h-full flex flex-col justify-center items-center space-y-32 -mt-24 left-1/2 -translate-x-1/2">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -61,7 +61,7 @@ const WelcomeScreen = () => {
           <Button text="Start Game" onClick={() => setScreen("game")} />
         </motion.div>
         <motion.div className="w-full" variants={childrenVariants}>
-          <Button text="Menu" onClick={() => {}} />
+          <Button text="Menu" onClick={() => setShowMenu(true)} />
         </motion.div>
         <motion.div className="w-full" variants={childrenVariants}>
           <Button text="Rules" onClick={() => setShowRulesWindow(true)} />

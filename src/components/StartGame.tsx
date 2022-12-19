@@ -12,7 +12,7 @@ w-[min(90%,400px)]"
       >
         <div
           onClick={() => setIsGameStarted(true)}
-          className="bg-blue-400 hover:bg-blue-300 select-none cursor-pointer text-white border-[3px] border-outline text-4xl text-center font-numbers  px-8 py-6  after:bg-outline after:absolute after:w-full after:h-full after:top-2 after:left-2 after:z-[-1] transition-all duration-150"
+          className="bg-blue-400 hover:bg-blue-300 select-none cursor-pointer text-white border-[3px] border-outline text-4xl text-center font-numbers  px-8 py-6  after:bg-outline after:absolute after:w-full after:h-full after:top-2 after:left-2 after:z-[-1] transition-all duration-150  before:border-t-2 before:border-l-2 before:border-white before:absolute before:top-[3px] before:left-[3px] before:right-[3px] before:bottom-[3px]"
         >
           {/* <Button text="Press To Start" onClick={() => setIsGameStarted(true)} /> */}
           Press to start

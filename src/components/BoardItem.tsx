@@ -33,11 +33,11 @@ absolute top-0 bottom-0 left-0 right-0   rounded-full flex justify-center items-
         zIndex: 100,
         scaleY: [1, 1.05, 1.05, 1.05, 1],
 
-        scaleX: [1, 1.05, 0, 1.05, 1],
+        scaleX: [1, 1.1, 0, 1.1, 1],
         transition: {
           type: "tween",
           duration: 0.6,
-          repeat: 2,
+
           ease: "easeInOut",
         },
       }}
@@ -45,7 +45,7 @@ absolute top-0 bottom-0 left-0 right-0   rounded-full flex justify-center items-
       className={`${
         item.player === 1 ? "bg-red" : "bg-yellow"
       } absolute top-0 bottom-0 left-0 right-0 border-2  rounded-full flex justify-center items-center 
- border-outline`}
+ border-white`}
     ></motion.div>
   ) : (
     <motion.div

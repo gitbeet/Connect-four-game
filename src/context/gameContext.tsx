@@ -66,6 +66,10 @@ interface GameContextInterface {
   >;
   addButtonDisabled: boolean;
   setAddButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  showMenu: boolean;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  sound: boolean;
+  setSound: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const gameContext = createContext<GameContextInterface | null>(null);
@@ -89,19 +93,21 @@ function generateBoard(): BoardItemInterface[] {
 const GameContextProvider = ({ children }: Props) => {
   const [showRulesWindow, setShowRulesWindow] = useState(false);
   const [showWinWindow, setShowWinWindow] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [sound, setSound] = useState(true);
   const [board, setBoard] = useState<BoardItemInterface[]>(generateBoard());
   const [screen, setScreen] = useState("welcome");
   const [player, setPlayer] = useState<number>(1);
   const [winner, setWinner] = useState<number | null>(null);
-  const [timeLimit, setTimeLimit] = useState(60000);
-  const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [moves, setMoves] = useState(0);
   const [score, setScore] = useState({ red: 0, yellow: 0 });
+  const [timeLimit, setTimeLimit] = useState(60000);
+  const [timeLeft, setTimeLeft] = useState(timeLimit);
+  const [winnerStreak, setWinnerStreak] = useState<WinnerStreakInterface[]>([]);
   const [winnerDecided, setWinnerDecided] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
-  const [winnerStreak, setWinnerStreak] = useState<WinnerStreakInterface[]>([]);
   const [addButtonDisabled, setAddButtonDisabled] = useState(false);
 
   const add = (col: number) => {
@@ -167,6 +173,10 @@ const GameContextProvider = ({ children }: Props) => {
         setAddButtonDisabled,
         showWinWindow,
         setShowWinWindow,
+        showMenu,
+        setShowMenu,
+        sound,
+        setSound,
       }}
     >
       {children}

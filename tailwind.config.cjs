@@ -6,6 +6,7 @@ module.exports = {
     fontFamily: {
       text: ["Lobster", "cursive"],
       numbers: ["Racing Sans One", "cursive"],
+      rules: ["Roboto", "sans-serif"],
     },
     colors: {
       yellow: "#FFF000",

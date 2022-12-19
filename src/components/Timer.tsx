@@ -5,10 +5,10 @@ const Timer = () => {
   const { timeLeft, player, winner } = useGameContext();
   return (
     <motion.div
-      initial={{ opacity: 0, y: -30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: -30, translateX: "-50%" }}
+      animate={{ opacity: 1, y: 0, translateX: "-50%" }}
       transition={{ duration: 0.2, delay: 0.4 }}
-      className="mt-4 flex w-full justify-center items-center"
+      className="absolute left-1/2  top-24"
     >
       <motion.div
         key={player}

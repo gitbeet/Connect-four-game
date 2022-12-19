@@ -74,8 +74,14 @@ const Arrow = () => {
       </svg>
     );
 
-  let position = mousePos.x - (windowSize.innerWidth - 309) / 2;
-  let offset = (windowSize.innerWidth - 309) / 2;
+  let position =
+    windowSize.innerWidth <= 768
+      ? mousePos.x - (windowSize.innerWidth - 330) / 2
+      : mousePos.x - (windowSize.innerWidth - 495) / 2;
+  let offset =
+    windowSize.innerWidth <= 768
+      ? (windowSize.innerWidth - 330) / 2
+      : (windowSize.innerWidth - 495) / 2;
 
   return (
     <AnimatePresence mode="wait">
@@ -85,22 +91,29 @@ const Arrow = () => {
           translateX: "-50%",
           top: -18,
           left:
-            mousePos.x > 330 + offset
+            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 495) + offset
               ? `100%`
               : mousePos.x < offset
               ? `0%`
-              : `${position}px`,
+              : `${
+                  windowSize.innerWidth <= 768
+                    ? position / 3.3
+                    : position / 4.95
+                }%`,
         }}
         animate={{
-          // y: [null, 10, -2, 0],
           translateX: "-50%",
           top: -25,
           left:
-            mousePos.x > 330 + offset
+            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 495) + offset
               ? `100%`
               : mousePos.x < offset
               ? `0%`
-              : `${position}px`,
+              : `${
+                  windowSize.innerWidth <= 768
+                    ? position / 3.3
+                    : position / 4.95
+                }%`,
         }}
         className="absolute z-10 -top-8  -translate-x-1/2"
         width="46"

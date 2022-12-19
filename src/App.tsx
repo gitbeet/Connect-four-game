@@ -8,6 +8,7 @@ import WinModal from "./components/WinModal";
 import bgElement from "./assets/bg-element.png";
 import bgElementTwo from "./assets/bg-element2.png";
 import Rules from "./components/Rules";
+import Menu from "./components/Menu";
 
 export const outlineColor = "#080A0C";
 export const redColor = "#f92381";
@@ -40,6 +41,7 @@ function App() {
     setWinnerStreak,
     showWinWindow,
     setShowWinWindow,
+    showMenu,
   } = useGameContext();
 
   useEffect(() => {
@@ -238,18 +240,19 @@ function App() {
     <div className="w-screen h-screen">
       <div className="absolute z-[-1] bg-gradient-to-b from-bg-400 to-bg-500   w-full h-full"></div>
       <img
-        className="absolute z-[-1] top-0 left-0 hue-rotate-180"
+        className="absolute z-[-1] top-0 left-0 hue-rotate-180 "
         src={bgElement}
       />
       <img
-        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full hue-rotate-180 "
+        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full hue-rotate-180  "
         src={bgElementTwo}
       />
 
       {screen === "welcome" ? <WelcomeScreen /> : null}
       {screen === "game" ? <GameScreen /> : null}
-      {showWinWindow ? <WinModal /> : null}
-      {showRulesWindow ? <Rules /> : null}
+      <WinModal />
+      <Rules />
+      <Menu />
     </div>
   );
 }
