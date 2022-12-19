@@ -122,6 +122,7 @@ const GameContextProvider = ({ children }: Props) => {
     );
     if (index === -1) {
       console.log("Column is full");
+      setAddButtonDisabled(false);
       return;
     }
     tempBoard[index].player = player;
