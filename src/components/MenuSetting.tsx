@@ -10,6 +10,7 @@ interface Props {
   disableArrowLeft: boolean;
   disableArrowRight: boolean;
   disabled: boolean;
+  width: string;
 }
 
 const MenuSetting = ({
@@ -20,6 +21,7 @@ const MenuSetting = ({
   disableArrowLeft,
   disableArrowRight,
   disabled,
+  width,
 }: Props) => {
   const [directon, setDirection] = useState<string | null>(null);
   const onClickArrowLeft = () => {
@@ -30,20 +32,24 @@ const MenuSetting = ({
     setDirection("right");
     arrowRightFunc();
   };
+
   return (
     <div
       className={`${
         disabled ? "pointer-events-none opacity-50 " : ""
-      } " w-full flex justify-between items-center font-numbers space-x-4"`}
+      } "  w-full flex justify-between items-center font-numbers space-x-4"`}
     >
-      <h1 className="select-none text-xl">{title}</h1>
-      <div className="flex justify-center items-center space-x-2">
+      <h1 className="select-none text-xl w-full">{title}</h1>
+      <div className="flex justify-center items-center space-x-2 w-full">
         <ArrowMenu
           direction="left"
           onClick={() => onClickArrowLeft()}
           disabled={disableArrowLeft}
         />
-        <div className=" w-16 h-full flex justify-center items-center  overflow-hidden">
+        <div
+          style={{ width }}
+          className={`h-full flex justify-center items-center  overflow-hidden`}
+        >
           <motion.p
             key={value}
             initial={{

@@ -67,7 +67,7 @@ function App() {
 
   useEffect(() => {
     if (winner == null || winnerDecided) return;
-    // setIsGameStarted(false);
+    setIsGameStarted(false);
     setWinnerDecided(true);
     setTimeout(() => {
       setShowWinWindow(true);
@@ -93,9 +93,6 @@ function App() {
     winnerCheck = win();
     setWinner(winnerCheck);
     setPlayer((prev) => (prev === 1 ? 2 : 1));
-    if (winnerCheck != null) {
-      setIsGameStarted(false);
-    }
     setAnimationComplete(false);
   }, [animationComplete]);
 

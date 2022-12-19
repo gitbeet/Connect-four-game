@@ -43,6 +43,7 @@ const Menu = () => {
               </header>
               <section className="space-y-12">
                 <MenuSetting
+                  width="3rem"
                   title={language === "English" ? "Time" : "Tiempo"}
                   arrowLeftFunc={() =>
                     setTimeLimit((prev) =>
@@ -60,6 +61,7 @@ const Menu = () => {
                   disabled={screen === "game"}
                 />
                 <MenuSetting
+                  width="3rem"
                   title={language === "English" ? "Sound" : "Sonido"}
                   arrowLeftFunc={() => setSound((prev) => !prev)}
                   arrowRightFunc={() => setSound((prev) => !prev)}
@@ -77,6 +79,7 @@ const Menu = () => {
                   disabled={false}
                 />
                 <MenuSetting
+                  width="4.7rem"
                   title={language === "English" ? "Language" : "Idioma"}
                   arrowLeftFunc={() => setLanguage("English")}
                   arrowRightFunc={() => setLanguage("Español")}
