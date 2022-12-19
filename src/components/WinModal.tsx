@@ -11,6 +11,7 @@ const WinModal = () => {
     resetGameState,
     showWinWindow,
     setShowWinWindow,
+    language,
   } = useGameContext();
 
   const playAgain = () => {
@@ -41,15 +42,33 @@ const WinModal = () => {
               {winner === 1 || winner === 2 ? (
                 <div className="text-center">
                   <h1 className="text-2xl text-outline font-numbers">
-                    Player <span className="font-numbers">{winner}</span> wins!
+                    {language === "English" ? (
+                      <>
+                        Player <span className="font-numbers">{winner}</span>{" "}
+                        wins!
+                      </>
+                    ) : (
+                      <>
+                        Jugador <span className="font-numbers">{winner}</span>{" "}
+                        gana!
+                      </>
+                    )}
                   </h1>
                 </div>
               ) : (
                 <h1>It's a tie!</h1>
               )}
               <div className="relative z-[10]  flex flex-col space-y-4">
-                <Button text="Play Again" onClick={() => playAgain()} />
-                <Button text="Exit" onClick={() => exit()} />
+                <Button
+                  text={
+                    language === "English" ? "Play Again" : "Juega de Nuevo"
+                  }
+                  onClick={() => playAgain()}
+                />
+                <Button
+                  text={language === "English" ? "Exit" : "Salir"}
+                  onClick={() => exit()}
+                />
               </div>
             </div>
           </motion.div>

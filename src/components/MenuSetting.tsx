@@ -1,5 +1,6 @@
 import ArrowMenu from "./ArrowMenu";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface Props {
   title: string;
@@ -20,6 +21,15 @@ const MenuSetting = ({
   disableArrowRight,
   disabled,
 }: Props) => {
+  const [directon, setDirection] = useState<string | null>(null);
+  const onClickArrowLeft = () => {
+    setDirection("left");
+    arrowLeftFunc();
+  };
+  const onClickArrowRight = () => {
+    setDirection("right");
+    arrowRightFunc();
+  };
   return (
     <div
       className={`${
@@ -30,15 +40,26 @@ const MenuSetting = ({
       <div className="flex justify-center items-center space-x-2">
         <ArrowMenu
           direction="left"
-          onClick={() => arrowLeftFunc()}
+          onClick={() => onClickArrowLeft()}
           disabled={disableArrowLeft}
         />
-        <p className="select-none w-12 h-full text-center text-2xl font-numbers">
-          {value}
-        </p>
+        <div className=" w-16 h-full flex justify-center items-center  overflow-hidden">
+          <motion.p
+            key={value}
+            initial={{
+              opacity: 0,
+              x: directon === "left" ? 35 : directon === "right" ? -35 : 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", duration: 0.6, bounce: 0.4 }}
+            className="select-none text-center text-xl font-numbers"
+          >
+            {value}
+          </motion.p>
+        </div>
         <ArrowMenu
           direction="right"
-          onClick={() => arrowRightFunc()}
+          onClick={() => onClickArrowRight()}
           disabled={disableArrowRight}
         />
       </div>

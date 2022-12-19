@@ -16,6 +16,8 @@ const Menu = () => {
     screen,
     setScreen,
     resetGameState,
+    language,
+    setLanguage,
   } = useGameContext();
 
   const exit = () => {
@@ -37,11 +39,11 @@ const Menu = () => {
           >
             <div className="relative  space-y-16 bg-white px-8 py-10  border-4 after:absolute  after:bg-outline after:w-full after:h-full after:top-4 after:left-4 after:z-[-1]">
               <header className="font-numbers text-4xl text-center">
-                Menu
+                {language === "English" ? "Options" : "Opciones"}
               </header>
               <section className="space-y-12">
                 <MenuSetting
-                  title="Time Limit"
+                  title={language === "English" ? "Time" : "Tiempo"}
                   arrowLeftFunc={() =>
                     setTimeLimit((prev) =>
                       prev < 30000 ? 15000 : prev - 15000
@@ -58,22 +60,45 @@ const Menu = () => {
                   disabled={screen === "game"}
                 />
                 <MenuSetting
-                  title="Sound"
+                  title={language === "English" ? "Sound" : "Sonido"}
                   arrowLeftFunc={() => setSound((prev) => !prev)}
                   arrowRightFunc={() => setSound((prev) => !prev)}
-                  value={sound ? "On" : "Off"}
+                  value={
+                    sound
+                      ? language === "English"
+                        ? "On"
+                        : "Si"
+                      : language === "English"
+                      ? "Off"
+                      : "No"
+                  }
                   disableArrowLeft={!sound}
                   disableArrowRight={sound}
+                  disabled={false}
+                />
+                <MenuSetting
+                  title={language === "English" ? "Language" : "Idioma"}
+                  arrowLeftFunc={() => setLanguage("English")}
+                  arrowRightFunc={() => setLanguage("Español")}
+                  value={language}
+                  disableArrowLeft={language === "English"}
+                  disableArrowRight={language === "Español"}
                   disabled={false}
                 />
               </section>
               <div className="space-y-4">
                 <div className="relative z-[10]  flex flex-col space-y-4">
-                  <Button text="Close" onClick={() => setShowMenu(false)} />
+                  <Button
+                    text={language === "English" ? "Close" : "Cerrar"}
+                    onClick={() => setShowMenu(false)}
+                  />
                 </div>
                 {screen === "game" && (
                   <div className="relative z-[10]  flex flex-col space-y-4">
-                    <Button text="Exit" onClick={() => exit()} />
+                    <Button
+                      text={language === "English" ? "Exit" : "Salir"}
+                      onClick={() => exit()}
+                    />
                   </div>
                 )}
               </div>

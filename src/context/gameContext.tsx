@@ -70,6 +70,8 @@ interface GameContextInterface {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   sound: boolean;
   setSound: React.Dispatch<React.SetStateAction<boolean>>;
+  language: string;
+  setLanguage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const gameContext = createContext<GameContextInterface | null>(null);
@@ -91,6 +93,7 @@ function generateBoard(): BoardItemInterface[] {
 }
 
 const GameContextProvider = ({ children }: Props) => {
+  const [language, setLanguage] = useState("English");
   const [showRulesWindow, setShowRulesWindow] = useState(false);
   const [showWinWindow, setShowWinWindow] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -177,6 +180,8 @@ const GameContextProvider = ({ children }: Props) => {
         setShowMenu,
         sound,
         setSound,
+        language,
+        setLanguage,
       }}
     >
       {children}

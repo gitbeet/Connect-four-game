@@ -2,7 +2,7 @@ import { useGameContext } from "../context/gameContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Timer = () => {
-  const { timeLeft, player, winner } = useGameContext();
+  const { timeLeft, player } = useGameContext();
   return (
     <motion.div
       initial={{ opacity: 0, y: -30, translateX: "-50%" }}

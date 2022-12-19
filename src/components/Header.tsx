@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useGameContext } from "../context/gameContext";
 
 const Header = () => {
-  const { setShowMenu } = useGameContext();
+  const { setShowMenu, language } = useGameContext();
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -16,7 +16,10 @@ const Header = () => {
         <Logo />
       </div>
       <div>
-        <Button text="Menu" onClick={() => setShowMenu(true)} />
+        <Button
+          text={language === "English" ? "Options" : "Opciones"}
+          onClick={() => setShowMenu(true)}
+        />
       </div>
     </motion.div>
   );

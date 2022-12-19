@@ -27,7 +27,8 @@ const childrenVariants = {
 };
 
 const WelcomeScreen = () => {
-  const { setScreen, setShowRulesWindow, setShowMenu } = useGameContext();
+  const { setScreen, setShowRulesWindow, setShowMenu, language } =
+    useGameContext();
   return (
     <div className="absolute  z-20 w-[min(100%,450px)] px-12 h-full flex flex-col justify-center items-center space-y-32 -mt-24 left-1/2 -translate-x-1/2">
       <motion.div
@@ -58,13 +59,22 @@ const WelcomeScreen = () => {
         className="flex flex-col justify-stretch items-stretch space-y-6 w-full"
       >
         <motion.div variants={childrenVariants} className="w-full">
-          <Button text="Start Game" onClick={() => setScreen("game")} />
+          <Button
+            text={language === "English" ? "New Game" : "Jugar"}
+            onClick={() => setScreen("game")}
+          />
         </motion.div>
         <motion.div className="w-full" variants={childrenVariants}>
-          <Button text="Menu" onClick={() => setShowMenu(true)} />
+          <Button
+            text={language === "English" ? "Options" : "Opciones"}
+            onClick={() => setShowMenu(true)}
+          />
         </motion.div>
         <motion.div className="w-full" variants={childrenVariants}>
-          <Button text="Rules" onClick={() => setShowRulesWindow(true)} />
+          <Button
+            text={language === "English" ? "Rules" : "Reglas"}
+            onClick={() => setShowRulesWindow(true)}
+          />
         </motion.div>
       </motion.div>
     </div>
