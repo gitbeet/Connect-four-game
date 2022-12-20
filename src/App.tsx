@@ -12,6 +12,7 @@ import Menu from "./components/Menu";
 import winSound from "./assets/win-sound.mp3";
 import bgSound from "./assets/background-music.mp3";
 import winModalSound from "./assets/game-won-sound.wav";
+import pageTransitionSound from "./assets/whoosh.mp3";
 export const outlineColor = "#080A0C";
 export const redColor = "#f92381";
 export const yellowColor = "#FFF000";
@@ -19,6 +20,7 @@ export const yellowColor = "#FFF000";
 const winAudio = new Audio(winSound);
 const bgAudio = new Audio(bgSound);
 const winModalAudio = new Audio(winModalSound);
+const pageTransitionAudio = new Audio(pageTransitionSound);
 winAudio.volume = 0.15;
 winModalAudio.volume = 0.2;
 bgAudio.loop = true;
@@ -70,6 +72,10 @@ function App() {
     setWinner(player === 1 ? 2 : 1);
     setTimeLeft(0);
   }, [timeLeft]);
+
+  useEffect(() => {
+    // pageTransitionAudio.play();
+  }, [screen]);
 
   useEffect(() => {
     if (screen !== "game" || !isGameStarted) return;
