@@ -1,6 +1,6 @@
 import { useGameContext } from "../context/gameContext";
 import BoardItem from "./BoardItem";
-import boardSmall from "../assets/board-sm3.png";
+import boardSmall from "../assets/board-sm5.png";
 
 const Board = () => {
   const { board, player } = useGameContext();

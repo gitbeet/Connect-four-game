@@ -266,7 +266,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      <div className="absolute z-[-1] bg-gradient-to-b from-bg-400 to-bg-500   w-full h-full"></div>
+      <div className="absolute z-[-1] bg-gradient-to-b from-bg-600 to-bg-700   w-full h-full"></div>
       <img
         className="absolute z-[-1] top-0 left-0 hue-rotate-180 "
         src={bgElement}
