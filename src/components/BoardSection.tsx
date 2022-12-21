@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const BoardSection = () => {
   return (
-    <div className="absolute top-1/2 left-1/2 md:scale-150">
+    <div className="absolute top-1/2 left-1/2 md:scale-125">
       <motion.div
         initial={{ y: 70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

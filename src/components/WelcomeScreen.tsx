@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
   const { setScreen, setShowRulesWindow, setShowMenu, language } =
     useGameContext();
   return (
-    <div className="absolute  z-20 w-[min(100%,450px)] px-12 h-full flex flex-col justify-center items-center space-y-32 -mt-24 left-1/2 -translate-x-1/2">
+    <div className="select-none absolute  z-20 w-[min(100%,450px)] px-12 h-full flex flex-col justify-center items-center space-y-32 -mt-24 left-1/2 -translate-x-1/2">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -43,10 +43,10 @@ const WelcomeScreen = () => {
         className="w-full  h-32 flex flex-col justify-center items-center "
       >
         <div className="relative text-center w-full">
-          <h1 className="absolute z-10 top-0 bottom-0 left-0 right-0  text-6xl text-white font-black">
+          <h1 className="select-none absolute z-10 top-0 bottom-0 left-0 right-0  text-6xl text-white font-black">
             Connect <span className="font-numbers text-7xl">4</span>
           </h1>
-          <h1 className="absolute z-0 top-[6px] bottom-0 left-[6px] right-0  text-6xl text-outline font-black">
+          <h1 className="select-none absolute z-0 top-[6px] bottom-0 left-[6px] right-0  text-6xl text-outline font-black">
             Connect <span className="font-numbers text-7xl">4</span>
           </h1>
         </div>

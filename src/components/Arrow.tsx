@@ -77,11 +77,11 @@ const Arrow = () => {
   let position =
     windowSize.innerWidth <= 768
       ? mousePos.x - (windowSize.innerWidth - 330) / 2
-      : mousePos.x - (windowSize.innerWidth - 495) / 2;
+      : mousePos.x - (windowSize.innerWidth - 412) / 2;
   let offset =
     windowSize.innerWidth <= 768
       ? (windowSize.innerWidth - 330) / 2
-      : (windowSize.innerWidth - 495) / 2;
+      : (windowSize.innerWidth - 412) / 2;
 
   return (
     <AnimatePresence mode="wait">
@@ -91,28 +91,28 @@ const Arrow = () => {
           translateX: "-50%",
           top: -18,
           left:
-            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 495) + offset
+            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
               ? `100%`
               : mousePos.x < offset
               ? `0%`
               : `${
                   windowSize.innerWidth <= 768
                     ? position / 3.3
-                    : position / 4.95
+                    : position / 4.12
                 }%`,
         }}
         animate={{
           translateX: "-50%",
           top: -25,
           left:
-            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 495) + offset
+            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
               ? `100%`
               : mousePos.x < offset
               ? `0%`
               : `${
                   windowSize.innerWidth <= 768
                     ? position / 3.3
-                    : position / 4.95
+                    : position / 4.12
                 }%`,
         }}
         className="absolute z-10 -top-8  -translate-x-1/2"

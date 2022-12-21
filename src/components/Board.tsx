@@ -3,7 +3,7 @@ import BoardItem from "./BoardItem";
 import boardSmall from "../assets/board-sm5.png";
 
 const Board = () => {
-  const { board, player } = useGameContext();
+  const { board } = useGameContext();
   return (
     <div className="grid grid-cols-7 gap-[3px] p-4 w-max scale-y-[-1] ">
       {board.map((item, i) => (

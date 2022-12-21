@@ -266,7 +266,10 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      <div className="absolute z-[-1] bg-gradient-to-b from-bg-600 to-bg-700   w-full h-full"></div>
+      <div
+        style={{ background: "radial-gradient(#07478e,#063161)" }}
+        className="absolute z-[-1]  w-full h-full"
+      ></div>
       <img
         className="absolute z-[-1] top-0 left-0 hue-rotate-180 "
         src={bgElement}

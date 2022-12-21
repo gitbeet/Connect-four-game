@@ -17,7 +17,7 @@ module.exports = {
 
       outline: "#080A0C",
       "bg-700": "#063161",
-      "bg-600": "#09538f",
+      "bg-600": "#0a5fa3",
       white: "#FFFF",
     },
     screens: {

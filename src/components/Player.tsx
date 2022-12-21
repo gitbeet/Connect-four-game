@@ -12,7 +12,7 @@ const Player = ({ player }: { player: number }) => {
         <h1
           className={`
          ${player === 1 ? "text-right" : "text-left"}
-         px-2 w-full text-4xl font-numbers text-outline`}
+         px-2 w-full text-4xl font-numbers text-outline select-none `}
         >
           {player === 1 ? score.red : score.yellow}
         </h1>

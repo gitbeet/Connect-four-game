@@ -18,7 +18,7 @@ const Timer = () => {
       >
         <AnimatePresence mode="wait">
           <motion.h1
-            className="text-outline font-numbers"
+            className="text-outline font-numbers select-none "
             key={timeLeft}
             initial={timeLeft > 9000 ? { opacity: 1 } : { y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
