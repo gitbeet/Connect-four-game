@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useWindowSize = (dependency: any) => {
+export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   function getWindowSize() {
@@ -9,8 +9,6 @@ export const useWindowSize = (dependency: any) => {
   }
 
   useEffect(() => {
-    if (!dependency) return;
-
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -20,6 +18,6 @@ export const useWindowSize = (dependency: any) => {
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
-  }, [dependency]);
+  }, []);
   return windowSize;
 };

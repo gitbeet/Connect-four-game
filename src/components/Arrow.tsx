@@ -8,8 +8,8 @@ import { useMousePosition } from "../hooks/useMousePosition";
 const Arrow = () => {
   const { player, isGameStarted, animationStarted } = useGameContext();
 
-  const windowSize = useWindowSize(isGameStarted);
-  const mousePos = useMousePosition(isGameStarted);
+  const windowSize = useWindowSize();
+  const mousePos = useMousePosition();
 
   const red = "#FF1F74";
   const yellow = "#FFD33C";
@@ -65,12 +65,13 @@ const Arrow = () => {
       ? (windowSize.innerWidth - 330) / 2
       : (windowSize.innerWidth - 412) / 2;
 
-  const leftVal =
-    mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
-      ? `100%`
-      : mousePos.x < offset
-      ? `0%`
-      : `${windowSize.innerWidth <= 768 ? position / 3.3 : position / 4.12}%`;
+  const leftVal = !isGameStarted
+    ? "50%"
+    : mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
+    ? `100%`
+    : mousePos.x < offset
+    ? `0%`
+    : `${windowSize.innerWidth <= 768 ? position / 3.3 : position / 4.12}%`;
 
   return (
     <AnimatePresence mode="wait">

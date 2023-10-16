@@ -5,11 +5,10 @@ interface MousePositionInterface {
   y: number;
 }
 
-export const useMousePosition = (dependency: any) => {
+export const useMousePosition = () => {
   const [mousePos, setMousePos] = useState<MousePositionInterface | null>(null);
 
   useEffect(() => {
-    if (!dependency) return;
     console.log("in arrow useeffect");
     const handleMouseMove = (event: any) => {
       setMousePos({ x: event.clientX, y: event.clientY });
@@ -20,7 +19,7 @@ export const useMousePosition = (dependency: any) => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [dependency]);
+  }, []);
 
   return mousePos;
 };

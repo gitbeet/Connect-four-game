@@ -6,13 +6,13 @@ import Timer from "./Timer";
 
 const GameScreen = () => {
   return (
-    <>
+    <div className="relative max-w-[1440px] mx-auto h-[max(100dvh,500px)] md:p-24">
       <StartGame />
       <Header />
       <Timer />
       <BoardSection />
       <PlayerSection />
-    </>
+    </div>
   );
 };
 

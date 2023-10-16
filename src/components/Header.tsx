@@ -11,7 +11,7 @@ const Header = () => {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.6 }}
-      className="flex justify-between  px-8 py-4  md:px-32 md:py-12 lg:px-96"
+      className="flex justify-between  px-8 py-4"
     >
       <div className="scale-125">
         <Logo />
