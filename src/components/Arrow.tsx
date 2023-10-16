@@ -2,40 +2,14 @@ import { useEffect, useState } from "react";
 import { useGameContext } from "../context/gameContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { outlineColor } from "../App";
-
-interface MousePositionInterface {
-  x: number;
-  y: number;
-}
-
-function getWindowSize() {
-  const { innerWidth, innerHeight } = window;
-  return { innerWidth, innerHeight };
-}
+import { useWindowSize } from "../hooks/useWindowSize";
+import { useMousePosition } from "../hooks/useMousePosition";
 
 const Arrow = () => {
   const { player, isGameStarted, animationStarted } = useGameContext();
-  const [mousePos, setMousePos] = useState<MousePositionInterface | null>(null);
-  const [windowSize, setWindowSize] = useState(getWindowSize());
 
-  useEffect(() => {
-    if (!isGameStarted) return;
-    const handleMouseMove = (event: any) => {
-      setMousePos({ x: event.clientX, y: event.clientY });
-    };
-
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [isGameStarted]);
+  const windowSize = useWindowSize(isGameStarted);
+  const mousePos = useMousePosition(isGameStarted);
 
   const red = "#FF1F74";
   const yellow = "#FFD33C";
@@ -70,18 +44,33 @@ const Arrow = () => {
           stroke={outlineColor}
           strokeWidth="2"
         />
-        <rect x="8" y="9" width="28" height="2" rx="1" fill="white" />
+        <rect
+          x="8"
+          y="9"
+          width="28"
+          height="2"
+          rx="1"
+          fill="white"
+        />
       </svg>
     );
 
-  let position =
+  const position =
     windowSize.innerWidth <= 768
       ? mousePos.x - (windowSize.innerWidth - 330) / 2
       : mousePos.x - (windowSize.innerWidth - 412) / 2;
-  let offset =
+
+  const offset =
     windowSize.innerWidth <= 768
       ? (windowSize.innerWidth - 330) / 2
       : (windowSize.innerWidth - 412) / 2;
+
+  const leftVal =
+    mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
+      ? `100%`
+      : mousePos.x < offset
+      ? `0%`
+      : `${windowSize.innerWidth <= 768 ? position / 3.3 : position / 4.12}%`;
 
   return (
     <AnimatePresence mode="wait">
@@ -90,30 +79,12 @@ const Arrow = () => {
         initial={{
           translateX: "-50%",
           top: -18,
-          left:
-            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
-              ? `100%`
-              : mousePos.x < offset
-              ? `0%`
-              : `${
-                  windowSize.innerWidth <= 768
-                    ? position / 3.3
-                    : position / 4.12
-                }%`,
+          left: leftVal,
         }}
         animate={{
           translateX: "-50%",
           top: -25,
-          left:
-            mousePos.x > (windowSize.innerWidth <= 768 ? 330 : 412) + offset
-              ? `100%`
-              : mousePos.x < offset
-              ? `0%`
-              : `${
-                  windowSize.innerWidth <= 768
-                    ? position / 3.3
-                    : position / 4.12
-                }%`,
+          left: leftVal,
         }}
         className="absolute z-10 -top-8  -translate-x-1/2"
         width="46"

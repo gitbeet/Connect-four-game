@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface WinnerStreakInterface {
   x: number;
@@ -130,6 +124,7 @@ const GameContextProvider = ({ children }: Props) => {
   };
 
   const resetGameState = () => {
+    setIsGameStarted(false);
     setBoard(generateBoard());
     setPlayer(1);
     setWinner(null);
