@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGameContext } from "./context/gameContext";
-import Board from "./components/Board";
-import DropSection from "./components/DropSection";
 import GameScreen from "./components/GameScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
 import WinModal from "./components/WinModal";
