@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    -webkit-tap-highlight-color: transparent;
+  .game-container {
+    @apply relative max-w-[1440px] mx-auto h-[max(90dvh,700px)] md:p-24;
   }
 }
 
@@ -19,7 +19,15 @@ body {
   height: 100vh;
 }
 
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 h1,
 p {
   font-family: inherit;
 }
+
+/* * {
+  outline: 1px solid red !important;
+} */

@@ -3,24 +3,32 @@ import { outlineColor, redColor, yellowColor } from "../App";
 const Player = ({ player }: { player: number }) => {
   const { score } = useGameContext();
   return (
-    <div className="">
-      <div
-        className={`${
-          player === 1 ? "left-12" : "-left-12"
-        } relative w-20 h-14 flex items-center bg-white border-2 border-outline  top-[4.3rem] after:absolute after:w-full after:h-full after:top-2 after:left-2 after:bg-outline after:z-[-1]`}
-      >
-        <h1
-          className={`
-         ${player === 1 ? "text-right" : "text-left"}
-         px-2 w-full text-4xl font-numbers text-outline select-none `}
+    <div className="relative">
+      <div className="absolute w-20 h-14 top-1/2 -translate-y-1/2 ">
+        <div
+          className={`${
+            player === 1 ? "left-12" : "-left-12"
+          } absolute w-full h-full flex items-center bg-white border-2 border-outline z-10`}
         >
-          {player === 1 ? score.red : score.yellow}
-        </h1>
+          <h1
+            className={`
+           ${player === 1 ? "text-right" : "text-left"}
+           px-2 w-full text-4xl font-numbers text-outline select-none `}
+          >
+            {player === 1 ? score.red : score.yellow}
+          </h1>
+        </div>
+        <div
+          className={`${
+            player === 1 ? "left-14" : "-left-10"
+          } absolute w-full h-full top-2 left-2 bg-outline`}
+        ></div>
       </div>
+
       <div
         className={`${
-          player === 1 ? "left-0" : "left-full -translate-x-full"
-        } relative`}
+          player === 1 ? "left-0" : "left-full -translate-x-full "
+        } relative `}
       >
         <svg
           width="86"
@@ -33,7 +41,7 @@ const Player = ({ player }: { player: number }) => {
             cx="46"
             cy="45"
             r="38.5"
-            fill="#080A0C"
+            fill={outlineColor}
             stroke={outlineColor}
             stroke-width="3"
           />

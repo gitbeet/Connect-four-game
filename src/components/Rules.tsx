@@ -18,12 +18,12 @@ const Rules = () => {
             transition={{ type: "spring", duration: 0.3 }}
             className="absolute w-[min(90%,450px)] z-[40] top-1/2 left-1/2"
           >
-            <div className="relative w-full space-y-8 bg-white p-10  border-4 after:absolute  after:bg-outline after:w-full after:h-full after:top-4 after:left-4 after:z-[-1] ">
-              <div className="space-y-4">
-                <header className="font-numbers text-xl">
+            <div className="relative w-full space-y-12 bg-white p-10  border-4 border-outline after:absolute  after:bg-outline after:w-full after:h-full after:top-4 after:left-4 after:z-[-1] ">
+              <div className="space-y-8">
+                <header className="font-numbers text-2xl text-center">
                   {language === "English" ? "Objective" : "Objetivo"}
                 </header>
-                <p className="font-numbers opacity-75">
+                <p className="font-rules text-lg">
                   {language === "English"
                     ? `The objective of the game Connect Four is to be the first
                   player to get four of one's own discs of the same color lined

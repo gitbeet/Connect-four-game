@@ -37,7 +37,7 @@ const Menu = () => {
             transition={{ type: "spring", duration: 0.3 }}
             className="absolute w-[min(90%,450px)] z-[40] top-1/2 left-1/2"
           >
-            <div className="relative  space-y-16 bg-white px-8 py-10  border-4 after:absolute  after:bg-outline after:w-full after:h-full after:top-4 after:left-4 after:z-[-1]">
+            <div className="relative  space-y-16 bg-white px-8 py-10  border-4 border-outline after:absolute  after:bg-outline after:w-full after:h-full after:top-4 after:left-4 after:z-[-1]">
               <header className="font-numbers text-4xl text-center">
                 {language === "English" ? "Options" : "Opciones"}
               </header>

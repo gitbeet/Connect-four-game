@@ -9,15 +9,15 @@ module.exports = {
       rules: ["Roboto", "sans-serif"],
     },
     colors: {
-      yellow: "#FFF000",
-      red: "#f92381",
-      "blue-400": "#01a1bd",
-      "blue-300": "#00afce",
-      "blue-200": "#0ad2f5",
+      yellow: "hsl(56,100%,60%)",
+      red: "hsl(314,95%,56%)",
+      "blue-400": "hsl(255,99%,85%)",
+      "blue-300": "hsl(255,99%,89%)",
+      "blue-200": "hsl(259,99%,89%)",
 
-      outline: "#080A0C",
-      "bg-700": "#063161",
-      "bg-600": "#0a5fa3",
+      outline: " hsl(270,59%,47%)",
+      "bg-700": "hsl(212,88%,20%)",
+      "bg-600": "hsl(207,88%,34%)",
       white: "#FFFF",
     },
     screens: {

@@ -58,19 +58,28 @@ const WelcomeScreen = () => {
         transition={{ delay: 0.8, staggerChildren: 0.2 }}
         className="flex flex-col justify-stretch items-stretch space-y-6 w-full"
       >
-        <motion.div variants={childrenVariants} className="w-full">
+        <motion.div
+          variants={childrenVariants}
+          className="w-full"
+        >
           <Button
             text={language === "English" ? "New Game" : "Jugar"}
             onClick={() => setScreen("game")}
           />
         </motion.div>
-        <motion.div className="w-full" variants={childrenVariants}>
+        <motion.div
+          className="w-full"
+          variants={childrenVariants}
+        >
           <Button
             text={language === "English" ? "Options" : "Opciones"}
             onClick={() => setShowMenu(true)}
           />
         </motion.div>
-        <motion.div className="w-full" variants={childrenVariants}>
+        <motion.div
+          className="w-full"
+          variants={childrenVariants}
+        >
           <Button
             text={language === "English" ? "Rules" : "Reglas"}
             onClick={() => setShowRulesWindow(true)}

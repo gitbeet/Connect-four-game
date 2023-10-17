@@ -11,9 +11,9 @@ import winSound from "./assets/win-sound.mp3";
 import bgSound from "./assets/background-music.mp3";
 import winModalSound from "./assets/game-won-sound.wav";
 import pageTransitionSound from "./assets/whoosh.mp3";
-export const outlineColor = "#080A0C";
-export const redColor = "#f92381";
-export const yellowColor = "#FFF000";
+export const outlineColor = "hsl(270,59%,47%)";
+export const redColor = "hsl(314,95%,56%)";
+export const yellowColor = "hsl(56,100%,60%)";
 
 const winAudio = new Audio(winSound);
 const bgAudio = new Audio(bgSound);
@@ -263,17 +263,17 @@ function App() {
   }
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen min-h-[100dvh]">
       <div
-        style={{ background: "radial-gradient(#07478e,#063161)" }}
-        className="absolute z-[-1]  w-full h-full"
+        // style={{ background: "radial-gradient(#07478e,#063161)" }}
+        className="absolute z-[-1]  w-full h-full bg-[radial-gradient(hsl(259,99%,95%),hsl(259,99%,87%),hsl(239,99%,81%))]"
       ></div>
       <img
-        className="absolute z-[-1] top-0 left-0 hue-rotate-180 "
+        className="absolute z-[-1] top-0 left-0  opacity-50"
         src={bgElement}
       />
       <img
-        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full hue-rotate-180  "
+        className="absolute z-[-1] top-full left-full -translate-x-full -translate-y-full opacity-50  "
         src={bgElementTwo}
       />
 
